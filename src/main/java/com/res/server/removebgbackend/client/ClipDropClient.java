@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @FeignClient(
         name = "clipdropClient",
-        url = "clip_drop.url"
+        url = "https://clipdrop-api.co"
 )
 public interface ClipDropClient {
     @PostMapping(value = "/remove-background/v1", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)

@@ -25,12 +25,15 @@ public class RemoveBgServiceImpl implements RemoveBGService {
         }
 
         try {
+            System.out.println("Calling ClipDrop API with file: " + file.getOriginalFilename());
+            System.out.println("ClipDrop API Key: " + apiKey);  // Remove this after debugging
             return clipDropClient.removeBackground(file, apiKey);
         } catch (Exception e) {
-            System.out.println("Error calling ClipDrop API: " + e.getMessage());
-            e.printStackTrace(); // ➕ Add this to see full stack trace on Railway logs
-            throw new RuntimeException("Failed to remove background using ClipDrop", e);
+            System.out.println("Error calling ClipDrop: " + e.getMessage());
+            e.printStackTrace();
+            throw new RuntimeException("ClipDrop call failed", e);
         }
     }
+
 
 }
