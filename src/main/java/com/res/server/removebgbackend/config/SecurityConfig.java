@@ -99,7 +99,7 @@ public class SecurityConfig {
                         // 👇 This is the critical fix!
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/api/orders/**").authenticated()
-                        .requestMatchers("/api/webhooks/clerk").permitAll()
+                        .requestMatchers("/","/api/webhooks/clerk").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session ->
