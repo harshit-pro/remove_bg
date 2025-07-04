@@ -99,8 +99,10 @@ public class SecurityConfig {
                         // 👇 This is the critical fix!
 //                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/api/orders/**").authenticated()
+                                .requestMatchers("/api/images/**").authenticated()
+                                .requestMatchers("/api/users/**").authenticated()
                         .requestMatchers("/","/api/webhooks/clerk").permitAll()
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
