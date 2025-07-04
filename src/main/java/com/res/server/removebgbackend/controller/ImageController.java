@@ -134,6 +134,7 @@ public class ImageController {
                     .body(base64Image);
 
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(RemoveBgResponse.builder()
                             .success(false)

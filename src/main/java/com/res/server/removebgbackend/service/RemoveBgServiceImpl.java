@@ -17,6 +17,20 @@ public class RemoveBgServiceImpl implements RemoveBGService {
     private final ClipDropClient clipDropClient;
     @Override
     public byte[] removeBackground(MultipartFile file) {
-    return clipDropClient.removeBackground(file,apiKey);
+        if (file == null || file.isEmpty()) {
+            throw new IllegalArgumentException("Uploaded file is empty or missing.");
+        }
+        if (apiKey == null || apiKey.isBlank()) {
+            throw new IllegalStateException("ClipDrop API key is missing.");
+        }
+
+        try {
+            return clipDropClient.removeBackground(file, apiKey);
+        } catch (Exception e) {
+            System.out.println("Error calling ClipDrop API: " + e.getMessage());
+            e.printStackTrace(); // ➕ Add this to see full stack trace on Railway logs
+            throw new RuntimeException("Failed to remove background using ClipDrop", e);
+        }
     }
+
 }
